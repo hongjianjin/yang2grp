@@ -56,13 +56,13 @@ FILE3=${OUTPUT_DIR}/${PREFIX}_gt120.lt150.bedpe
 cat $INPUT | awk  -v f1=\"$FILE1\" -v f2=\"$FILE2\" -v f3=\"$FILE3\" '\$6 - \$2 < 2000 {if(\$6 - \$2<=120) {print >f1}else{ if(\$6 - \$2>150) {print > f2}else{print>f3} }}'
 
 # narrow peak calling for histone modifications
-PEAK_DIR1=${OUTPUT_DIR}/narrowPeaks_gt120.lt150
+PEAK_DIR1=${OUTPUT_DIR}/narrowPeaks
 if [ ! -d ${PEAK_DIR1} ]; then
 	mkdir -p $PEAK_DIR1
 fi
 
 macs2 callpeak \
-		-t ${OUTPUT_DIR}/${PREFIX}_gt120.lt150.bedpe\
+		-t ${OUTPUT_DIR}/${PREFIX}.bedpe\
           -q 0.05 \
 		-g hs \
 		-f BEDPE \
